@@ -89,6 +89,7 @@ public class Main {
         mathLabel.setSize(200, 40);
         myFrame.add(mathLabel);
 
+
         JTextField mathTF = new JTextField();
         mathTF.setFont(chemTF.getFont().deriveFont(16f));
         mathTF.setLocation(240, 420);
