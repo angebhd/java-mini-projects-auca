@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -88,7 +87,6 @@ public class Main {
         mathLabel.setLocation(10, 420);
         mathLabel.setSize(200, 40);
         myFrame.add(mathLabel);
-
 
         JTextField mathTF = new JTextField();
         mathTF.setFont(chemTF.getFont().deriveFont(16f));
