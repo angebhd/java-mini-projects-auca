@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -34,18 +43,18 @@ public class OSMS extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        enTF = new javax.swing.JTextField();
+        eIDTF = new javax.swing.JTextField();
+        gsTF = new javax.swing.JTextField();
+        taTF = new javax.swing.JTextField();
+        pfTF = new javax.swing.JTextField();
+        itTF = new javax.swing.JTextField();
+        hiTF = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        rTA = new javax.swing.JTextArea();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -85,41 +94,67 @@ public class OSMS extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel7.setText("HEALTH INSURANCE:");
 
-        jTextField1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        enTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        eIDTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        gsTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        taTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        pfTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField6.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        itTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
-        jTextField7.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        hiTF.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton2.setText("NET SALARY");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton3.setText("MONTHLY SALARY");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton4.setText("ANNUAL SALARY");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        rTA.setColumns(20);
+        rTA.setFont(new java.awt.Font("Liberation Sans", 3, 24)); // NOI18N
+        rTA.setRows(5);
+        jScrollPane1.setViewportView(rTA);
 
         jButton5.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton5.setText("SAVE DATA");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton6.setText("RETRIVE DATA FROM DB");
 
         jButton7.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         jButton7.setText("CANCEL");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,13 +174,13 @@ public class OSMS extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
+                            .addComponent(enTF)
+                            .addComponent(eIDTF)
+                            .addComponent(gsTF)
+                            .addComponent(taTF)
+                            .addComponent(pfTF)
+                            .addComponent(itTF)
+                            .addComponent(hiTF, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(105, 105, 105)
@@ -173,37 +208,35 @@ public class OSMS extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(enTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(eIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(gsTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(taTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(pfTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hiTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -216,7 +249,7 @@ public class OSMS extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,6 +274,111 @@ public class OSMS extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        enTF.setText(null);
+        eIDTF.setText(null);
+        gsTF.setText(null);
+        taTF.setText(null);
+        pfTF.setText(null);
+        itTF.setText(null);
+        hiTF.setText(null);
+        rTA.setText(null);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+//        enTF.setText(null);
+//        eIDTF.setText(null);
+//        gsTF.setText(null);
+//        taTF.setText(null);
+//        pfTF.setText(null);
+//        itTF.setText(null);
+//        hiTF.setText(null);
+//        rTA.setText(null);
+        
+        int gs = Integer.parseInt(gsTF.getText());
+        float it = Float.parseFloat(itTF.getText());
+        int pf = Integer.parseInt(pfTF.getText());
+        
+        float tax = (gs*it)/100;
+        
+        float netSal = gs - tax -pf;
+        
+        rTA.setText(String.valueOf(netSal));
+        
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int gs = Integer.parseInt(gsTF.getText());
+        float it = Float.parseFloat(itTF.getText());
+        int pf = Integer.parseInt(pfTF.getText());
+        int ta = Integer.parseInt(taTF.getText());
+        int hi = Integer.parseInt(hiTF.getText());
+
+        
+        float tax = (gs*it)/100;
+        float netSal = gs - tax -pf;
+        
+        
+        float monthSal = netSal + ta + hi;
+        
+        rTA.setText(String.valueOf(monthSal));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int gs = Integer.parseInt(gsTF.getText());
+        float it = Float.parseFloat(itTF.getText());
+        int pf = Integer.parseInt(pfTF.getText());
+        int ta = Integer.parseInt(taTF.getText());
+        int hi = Integer.parseInt(hiTF.getText());
+
+        
+        float tax = (gs*it)/100;
+        float netSal = gs - tax -pf;
+        float monthSal = netSal + ta + hi;
+        float annualSal = monthSal*12;
+        
+        rTA.setText(String.valueOf(annualSal));
+                                            
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Connection con1;
+        PreparedStatement insert;
+        String en = enTF.getText();
+        int eID = Integer.parseInt(eIDTF.getText());
+        int gs = Integer.parseInt(gsTF.getText());        
+        int ta = Integer.parseInt(taTF.getText());
+        int pf = Integer.parseInt(pfTF.getText());
+        float it = Float.parseFloat(itTF.getText());
+        int hi = Integer.parseInt(hiTF.getText());
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con1=DriverManager.getConnection("jdbc:mysql://localhost/MorningDB","DBuser","DBpass@123");
+            insert=con1.prepareStatement("insert into MorningDB (names,id,gross_salary,transport_allowance,provident_fund, income_tax, health_insurance) values(?,?,?,?,?,?,?)");
+            insert.setString(1,en);
+            insert.setInt(2, eID);
+            insert.setInt(3, gs);
+            insert.setInt(4, ta);
+            insert.setInt(5, pf);
+            insert.setFloat(6, it);
+            insert.setInt(7, hi);
+            
+            insert.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record well inserted");
+        } catch (ClassNotFoundException ex) {
+            System.out.print(ex);
+        } catch (SQLException ex) {
+            System.out.print(ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +416,11 @@ public class OSMS extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField eIDTF;
+    private javax.swing.JTextField enTF;
+    private javax.swing.JTextField gsTF;
+    private javax.swing.JTextField hiTF;
+    private javax.swing.JTextField itTF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -294,13 +437,8 @@ public class OSMS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField pfTF;
+    private javax.swing.JTextArea rTA;
+    private javax.swing.JTextField taTF;
     // End of variables declaration//GEN-END:variables
 }
